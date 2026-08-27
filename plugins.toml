@@ -1,0 +1,51 @@
+# The weewx-evo plugin catalogue.
+#
+# One entry per plugin. This file is the whole index: `weewx-evo` reads it so
+# that adding a plugin is choosing from a list rather than pasting a URL, and
+# a person reads it to see what exists.
+#
+# It is deliberately a list of pointers and not a monorepo. Each plugin has
+# its own repository, its own issues, its own releases and its own maintainer
+# -- which is what lets somebody who is not us keep one alive. The mistake to
+# avoid is the one weewx-DWD made: ten unrelated things in one package, where
+# a change to the radar code can break the forecast.
+#
+# ## Adding one
+#
+# Open a pull request that adds a block. What is checked before it is merged:
+#
+#   - it installs, and `weewx-evo <kind> list` shows it afterwards
+#   - it has a licence, and one compatible with GPL-3.0-or-later
+#   - `options()` returns something the settings page can render
+#   - the README says what it is for in the first paragraph
+#
+# Nothing here is a judgement about quality. The catalogue says a plugin
+# exists and what it claims to do; whether it is any good is between its
+# author and the people using it.
+#
+# ## The fields
+#
+#   name        what `pip install` and `weewx-evo plugin install` take
+#   kind        driver | export | upload | feed | forecast
+#   provides    the name it registers, which is what goes in `kind = "..."`
+#   summary     one line, said the way the settings page will show it
+#   repository  where it lives
+#   licence     SPDX identifier
+#   tested      the weewx-evo version its author last checked it against
+#   author      who to open an issue with
+#
+# `tested` is not a compatibility range. It is one fact -- what somebody
+# actually ran it against -- because a range is a promise nobody can keep and
+# a plugin that says "any version" is saying nothing.
+
+version = 1
+
+[[plugin]]
+name = "weewx-evo-sftp"
+kind = "export"
+provides = "sftp"
+summary = "A server that offers SSH but no rsync. Keys only, and it remembers what it already sent."
+repository = "https://github.com/hilman2/weewx-evo-sftp"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
