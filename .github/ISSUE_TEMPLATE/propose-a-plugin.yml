@@ -1,0 +1,106 @@
+name: Propose a plugin
+description: Ask for your plugin to be listed in the catalogue
+title: "Plugin: "
+labels: ["plugin"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The fields below are the entry that goes into `plugins.toml`. Nothing
+        here is a judgement about quality: the catalogue says a plugin exists
+        and what it claims to do.
+
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: What `pip install` and `weewx-evo plugin install` take.
+      placeholder: weewx-evo-sftp
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - driver
+        - export
+        - upload
+        - feed
+        - forecast
+    validations:
+      required: true
+
+  - type: input
+    id: provides
+    attributes:
+      label: Provides
+      description: The name it registers. This is what goes in `kind = "..."`.
+      placeholder: sftp
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: One line, said the way the settings page will show it.
+      placeholder: A server that offers SSH but no rsync. Keys only.
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+      placeholder: https://github.com/you/weewx-evo-sftp
+    validations:
+      required: true
+
+  - type: input
+    id: licence
+    attributes:
+      label: Licence
+      description: SPDX identifier. It has to be compatible with GPL-3.0-or-later.
+      placeholder: GPL-3.0-or-later
+    validations:
+      required: true
+
+  - type: input
+    id: tested
+    attributes:
+      label: Tested against
+      description: >-
+        The weewx-evo version you last ran it against. One version, not a
+        range: a range is a promise nobody can keep.
+      placeholder: 0.0.1
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Who to open an issue with.
+      placeholder: your GitHub handle
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before it goes in
+      options:
+        - label: It installs, and `weewx-evo <kind> list` shows it afterwards
+          required: true
+        - label: "`options()` returns something the settings page can render, or the plugin has no settings"
+          required: true
+        - label: The README says what it is for in the first paragraph
+          required: true
+
+  - type: textarea
+    id: anything
+    attributes:
+      label: Anything else
+      description: Optional.
