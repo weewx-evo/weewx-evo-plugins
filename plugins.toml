@@ -48,12 +48,22 @@
 #   summary     one line, said the way the settings page will show it
 #   repository  where it lives
 #   licence     SPDX identifier
+#   version     what the package's own pyproject says, so weewx-evo can
+#               compare it against what is installed and offer the update
+#   ref         branch, tag or commit to install. Empty is the default
+#               branch, which is what 'the current version' means
 #   tested      the weewx-evo version its author last checked it against
 #   author      who to open an issue with
 #
 # `tested` is not a compatibility range. It is one fact -- what somebody
 # actually ran it against -- because a range is a promise nobody can keep and
 # a plugin that says "any version" is saying nothing.
+#
+# `version` is here rather than fetched per add-on, and that is the whole
+# of why an update check costs nothing: this file is already pulled once a
+# day. It has to be raised in the same pull request that raises the
+# package's own -- an entry that lags says "up to date" about something
+# that is not, which is worse than saying nothing at all.
 #
 # ## `detects`, and why it lives here
 #
@@ -110,6 +120,7 @@ provides = ""
 summary = "The parts every push protocol shares. Installed with any of them; on its own it does nothing."
 repository = "https://github.com/weewx-evo/weewx-evo-push-common"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -120,6 +131,7 @@ provides = "sftp"
 summary = "A server that offers SSH but no rsync. Keys only, and it remembers what it already sent."
 repository = "https://github.com/weewx-evo/weewx-evo-sftp"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -131,6 +143,7 @@ detects = { body = ["PASSKEY="], not_body = ["AMBWeather"] }
 summary = "Ecowitt custom upload. GW1000 to GW3000, HP2551, HP2561, WS3800 and their rebadges."
 repository = "https://github.com/weewx-evo/weewx-evo-ecowitt"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -142,6 +155,7 @@ detects = { body = ["PASSKEY=", "AMBWeather"] }
 summary = "Ambient Weather custom upload. WS-2902, WS-5000, WS-1965 and the rest of the range."
 repository = "https://github.com/weewx-evo/weewx-evo-ambient"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -153,6 +167,7 @@ detects = { body = ["mt=", "id="] }
 summary = "Acurite smartHUB and Access bridges, with a 5-in-1, towers, Pro sensors and the 899 rain gauge."
 repository = "https://github.com/weewx-evo/weewx-evo-acurite"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -164,6 +179,7 @@ detects = { body = ["mac=", "id="] }
 summary = "LaCrosse LW301 and LW302 gateways, with the wind, rain, UV and temperature sensors."
 repository = "https://github.com/weewx-evo/weewx-evo-lacrosse"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -175,6 +191,7 @@ detects = { body = ["action=updateraw"], path = ["/weatherstation/updateweathers
 summary = "The Weather Underground PWS upload. Fine Offset Observer consoles, any Ecowitt set to Wunderground, Meteobridge."
 repository = "https://github.com/weewx-evo/weewx-evo-wunderground"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -186,6 +203,7 @@ detects = { body = ["serial_number", "hub_sn"] }
 summary = "WeatherFlow Tempest, and the AIR and SKY before it, read off the hub's own UDP broadcast."
 repository = "https://github.com/weewx-evo/weewx-evo-weatherflow"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -197,6 +215,7 @@ detects = { body = ["\"model\"", "\"time\""] }
 summary = "Cheap 433, 868 and 915 MHz sensors heard with an RTL-SDR stick, by way of rtl_433."
 repository = "https://github.com/weewx-evo/weewx-evo-rtl433"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -210,6 +229,7 @@ provides = "purpleair"
 summary = "PurpleAir PA-II, PA-II-SD and PA-I air quality sensors, asked on the local network."
 repository = "https://github.com/weewx-evo/weewx-evo-purpleair"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -220,6 +240,7 @@ provides = "airlink"
 summary = "Davis AirLink air quality sensors, asked on the local network."
 repository = "https://github.com/weewx-evo/weewx-evo-airlink"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -233,6 +254,7 @@ provides = "ecowitt_gateway"
 summary = "An Ecowitt gateway asked on its own API over TCP 45000, for a console that cannot be pointed here."
 repository = "https://github.com/weewx-evo/weewx-evo-ecowitt-gateway"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -247,6 +269,7 @@ provides = "ambient_cloud"
 summary = "Ambient Weather stations read through ambientweather.net, for hardware that is not on this network."
 repository = "https://github.com/weewx-evo/weewx-evo-ambient-cloud"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -257,6 +280,7 @@ provides = "homeassistant"
 summary = "Any sensor Home Assistant integrates, read over its REST API. Which entities is yours to choose."
 repository = "https://github.com/weewx-evo/weewx-evo-homeassistant"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
 
@@ -270,5 +294,6 @@ provides = "weewx-driver"
 summary = "Any WeeWX driver, run in its own process. Vantage, Fine Offset, rtl_433 and the hundred beside them, without installing WeeWX."
 repository = "https://github.com/weewx-evo/weewx-evo-weewx-driver"
 licence = "GPL-3.0-or-later"
+version = "0.1.0"
 tested = "0.0.1"
 author = "hilman2"
