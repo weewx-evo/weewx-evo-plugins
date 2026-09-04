@@ -71,3 +71,53 @@ repository = "https://github.com/weewx-evo/weewx-evo-ecowitt"
 licence = "GPL-3.0-or-later"
 tested = "0.0.1"
 author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-ambient"
+kind = "driver"
+provides = "ambient"
+summary = "Ambient Weather custom upload. WS-2902, WS-5000, WS-1965 and the rest of the range."
+repository = "https://github.com/weewx-evo/weewx-evo-ambient"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-acurite"
+kind = "driver"
+provides = "acurite"
+summary = "Acurite smartHUB and Access bridges, with a 5-in-1, towers, Pro sensors and the 899 rain gauge."
+repository = "https://github.com/weewx-evo/weewx-evo-acurite"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-lacrosse"
+kind = "driver"
+provides = "lacrosse"
+summary = "LaCrosse LW301 and LW302 gateways, with the wind, rain, UV and temperature sensors."
+repository = "https://github.com/weewx-evo/weewx-evo-lacrosse"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-wunderground"
+kind = "driver"
+provides = "wunderground"
+summary = "The Weather Underground PWS upload. Fine Offset Observer consoles, any Ecowitt set to Wunderground, Meteobridge."
+repository = "https://github.com/weewx-evo/weewx-evo-wunderground"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-weatherflow"
+kind = "driver"
+provides = "weatherflow"
+summary = "WeatherFlow Tempest, and the AIR and SKY before it, read off the hub's own UDP broadcast."
+repository = "https://github.com/weewx-evo/weewx-evo-weatherflow"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
