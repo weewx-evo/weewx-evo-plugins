@@ -28,6 +28,9 @@ does not name a protocol.
 | [weewx-evo-rtl433](https://github.com/weewx-evo/weewx-evo-rtl433) | `rtl433` | Any 433, 868 or 915 MHz sensor rtl_433 decodes, heard with an RTL-SDR stick |
 | [weewx-evo-purpleair](https://github.com/weewx-evo/weewx-evo-purpleair) | `purpleair` | PA-II, PA-II-SD and PA-I air quality sensors |
 | [weewx-evo-airlink](https://github.com/weewx-evo/weewx-evo-airlink) | `airlink` | Davis AirLink air quality sensors |
+| [weewx-evo-ecowitt-gateway](https://github.com/weewx-evo/weewx-evo-ecowitt-gateway) | `ecowitt_gateway` | The same gateways, asked on TCP 45000 instead of configured to upload |
+| [weewx-evo-ambient-cloud](https://github.com/weewx-evo/weewx-evo-ambient-cloud) | `ambient_cloud` | An Ambient station that is not on this network, through ambientweather.net |
+| [weewx-evo-homeassistant](https://github.com/weewx-evo/weewx-evo-homeassistant) | `homeassistant` | Any sensor Home Assistant integrates. Which entities is yours to choose |
 
 PurpleAir and AirLink are asked rather than listened for: the sensor has
 nowhere to type a server address into, so the driver goes to it on a schedule.

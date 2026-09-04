@@ -154,3 +154,40 @@ repository = "https://github.com/weewx-evo/weewx-evo-airlink"
 licence = "GPL-3.0-or-later"
 tested = "0.0.1"
 author = "hilman2"
+
+# The same hardware as weewx-evo-ecowitt, reached the other way: asked on its
+# own API instead of configured to upload. For a console somebody else set up,
+# or one whose custom-upload slot is taken.
+[[plugin]]
+name = "weewx-evo-ecowitt-gateway"
+kind = "driver"
+provides = "ecowitt_gateway"
+summary = "An Ecowitt gateway asked on its own API over TCP 45000, for a console that cannot be pointed here."
+repository = "https://github.com/weewx-evo/weewx-evo-ecowitt-gateway"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+# Depends on weewx-evo-ambient, which pip brings along: a station reporting
+# through the service sends the same fields under the same names as one
+# posting here, so the two share a catalog rather than keeping copies that
+# must not disagree.
+[[plugin]]
+name = "weewx-evo-ambient-cloud"
+kind = "driver"
+provides = "ambient_cloud"
+summary = "Ambient Weather stations read through ambientweather.net, for hardware that is not on this network."
+repository = "https://github.com/weewx-evo/weewx-evo-ambient-cloud"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-homeassistant"
+kind = "driver"
+provides = "homeassistant"
+summary = "Any sensor Home Assistant integrates, read over its REST API. Which entities is yours to choose."
+repository = "https://github.com/weewx-evo/weewx-evo-homeassistant"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
