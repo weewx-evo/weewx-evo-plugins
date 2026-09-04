@@ -52,8 +52,16 @@
 #               compare it against what is installed and offer the update
 #   ref         branch, tag or commit to install. Empty is the default
 #               branch, which is what 'the current version' means
+#   hardware    the boxes it reads, named the way a box is named. Optional
 #   tested      the weewx-evo version its author last checked it against
 #   author      who to open an issue with
+#
+# `hardware` is what somebody actually searches for. They know what is on
+# their pole and nothing else -- not the protocol it speaks, not the package
+# that reads it. One entry here covers the thirteen drivers WeeWX ships, so
+# without it the row that answers "does it do my Vantage" said Vantage
+# nowhere. A list rather than a longer summary: the summary is one line and
+# it has a job, and thirteen model names in it is the line nobody finishes.
 #
 # `tested` is not a compatibility range. It is one fact -- what somebody
 # actually ran it against -- because a range is a promise nobody can keep and
@@ -291,7 +299,22 @@ author = "hilman2"
 name = "weewx-evo-weewx-driver"
 kind = "collector"
 provides = "weewx-driver"
-summary = "Any WeeWX driver, run in its own process. Vantage, Fine Offset, rtl_433 and the hundred beside them, without installing WeeWX."
+summary = "Any WeeWX driver, run in its own process, without installing WeeWX."
+# The thirteen WeeWX ships, read out of each driver's own docstring rather
+# than remembered: a list that claims hardware nobody checked is worse than
+# no list. Any other WeeWX driver works too -- `install ./some-driver.py` --
+# and these are the ones that are there without fetching anything.
+hardware = [
+  "Davis Vantage Pro, Pro2, Vue",
+  "Fine Offset USB (Ambient, Watson, National Geographic, WH1080)",
+  "AcuRite 01025, 01035, 02032C, 02064C",
+  "Oregon Scientific WMR100, WMRS200, WMR300, WMR9x8, WM-918, WMR-968",
+  "LaCrosse WS-23xx, WS-28xx",
+  "Hideki TE923 (Honeywell, Meade, IROX Pro X, Mebus, TFA Nexus)",
+  "Peet Bros Ultimeter",
+  "RainWise CC3000",
+  "ADS WS1",
+]
 repository = "https://github.com/weewx-evo/weewx-evo-weewx-driver"
 licence = "GPL-3.0-or-later"
 version = "0.1.0"
