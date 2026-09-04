@@ -26,7 +26,7 @@
 # ## The fields
 #
 #   name        what `pip install` and `weewx-evo plugin install` take
-#   kind        driver | export | upload | feed | forecast
+#   kind        driver | collector | export | upload | feed | forecast
 #   provides    the name it registers, which is what goes in `kind = "..."`
 #   summary     one line, said the way the settings page will show it
 #   repository  where it lives
@@ -221,6 +221,19 @@ kind = "driver"
 provides = "homeassistant"
 summary = "Any sensor Home Assistant integrates, read over its REST API. Which entities is yours to choose."
 repository = "https://github.com/weewx-evo/weewx-evo-homeassistant"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+# A collector rather than a parser, and the only one so far: it contributes a
+# kind under `weewx_evo.collectors` and brings its own command, because it
+# runs where the hardware is and that need not be where weewx-evo runs.
+[[plugin]]
+name = "weewx-evo-weewx-driver"
+kind = "collector"
+provides = "weewx-driver"
+summary = "Any WeeWX driver, run in its own process. Vantage, Fine Offset, rtl_433 and the hundred beside them, without installing WeeWX."
+repository = "https://github.com/weewx-evo/weewx-evo-weewx-driver"
 licence = "GPL-3.0-or-later"
 tested = "0.0.1"
 author = "hilman2"
