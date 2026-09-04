@@ -37,6 +37,18 @@
 # `tested` is not a compatibility range. It is one fact -- what somebody
 # actually ran it against -- because a range is a promise nobody can keep and
 # a plugin that says "any version" is saying nothing.
+#
+# ## What is not listed
+#
+# A package that provides nothing on its own. `weewx-evo-push-common` carries
+# the parts every push protocol shares, and installing it alone registers no
+# protocol and answers on no endpoint -- so it is a dependency of the drivers
+# that need it and pip brings it along. A catalogue of things somebody can
+# choose should not offer one that does nothing when chosen.
+#
+# That is also why plugins depending on each other needs nothing here: it is
+# a line in the dependent plugin's `pyproject.toml`, which pip already
+# resolves. An index that had to know about it would be a package manager.
 
 version = 1
 
@@ -46,6 +58,16 @@ kind = "export"
 provides = "sftp"
 summary = "A server that offers SSH but no rsync. Keys only, and it remembers what it already sent."
 repository = "https://github.com/weewx-evo/weewx-evo-sftp"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
+
+[[plugin]]
+name = "weewx-evo-ecowitt"
+kind = "driver"
+provides = "ecowitt"
+summary = "Ecowitt custom upload. GW1000 to GW3000, HP2551, HP2561, WS3800 and their rebadges."
+repository = "https://github.com/weewx-evo/weewx-evo-ecowitt"
 licence = "GPL-3.0-or-later"
 tested = "0.0.1"
 author = "hilman2"
