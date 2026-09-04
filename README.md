@@ -8,9 +8,36 @@ What is here is the pointer, not the code.
 
 ## What is in it
 
-| Plugin | Kind | `kind` | For |
-|---|---|---|---|
-| [weewx-evo-sftp](https://github.com/weewx-evo/weewx-evo-sftp) | export | `sftp` | A server with SSH but no rsync |
+`plugins.toml` is the list this table is written from. Where the two ever
+disagree, the file is right: it is what weewx-evo reads.
+
+### Drivers
+
+One per protocol, so a station installs the one its hardware speaks and
+nothing else. In detection order, which is what decides a tie when an upload
+does not name a protocol.
+
+| Plugin | `kind` | For |
+|---|---|---|
+| [weewx-evo-ecowitt](https://github.com/weewx-evo/weewx-evo-ecowitt) | `ecowitt` | GW1000 to GW3000, HP2551, WS3800 and their rebadges |
+| [weewx-evo-ambient](https://github.com/weewx-evo/weewx-evo-ambient) | `ambient` | WS-2902, WS-5000, WS-1965 and the rest of the Ambient range |
+| [weewx-evo-acurite](https://github.com/weewx-evo/weewx-evo-acurite) | `acurite` | smartHUB and Access bridges, with a 5-in-1, towers and the 899 rain gauge |
+| [weewx-evo-lacrosse](https://github.com/weewx-evo/weewx-evo-lacrosse) | `lacrosse` | LW301 and LW302 gateways |
+| [weewx-evo-wunderground](https://github.com/weewx-evo/weewx-evo-wunderground) | `wunderground` | Fine Offset Observer and its rebadges, Meteobridge, weather software generally |
+| [weewx-evo-weatherflow](https://github.com/weewx-evo/weewx-evo-weatherflow) | `weatherflow` | Tempest, and the AIR, SKY and hub before it |
+
+They share
+[weewx-evo-push-common](https://github.com/weewx-evo/weewx-evo-push-common),
+which pip installs with whichever one you pick. It is not listed here on
+purpose: installed on its own it registers no protocol and answers on no
+endpoint, and a list of things to choose from should not offer one that does
+nothing when chosen.
+
+### Exports
+
+| Plugin | `kind` | For |
+|---|---|---|
+| [weewx-evo-sftp](https://github.com/weewx-evo/weewx-evo-sftp) | `sftp` | A server with SSH but no rsync |
 
 ## Suggesting your own
 
