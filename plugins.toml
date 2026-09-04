@@ -121,3 +121,16 @@ repository = "https://github.com/weewx-evo/weewx-evo-weatherflow"
 licence = "GPL-3.0-or-later"
 tested = "0.0.1"
 author = "hilman2"
+
+# Asked rather than listened for. Same kind and same entry point: that a
+# PurpleAir has to be asked is a property of its protocol, not a second sort
+# of plugin, and nothing on the settings page needs to know which it is.
+[[plugin]]
+name = "weewx-evo-purpleair"
+kind = "driver"
+provides = "purpleair"
+summary = "PurpleAir PA-II, PA-II-SD and PA-I air quality sensors, asked on the local network."
+repository = "https://github.com/weewx-evo/weewx-evo-purpleair"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"

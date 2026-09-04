@@ -25,6 +25,12 @@ does not name a protocol.
 | [weewx-evo-lacrosse](https://github.com/weewx-evo/weewx-evo-lacrosse) | `lacrosse` | LW301 and LW302 gateways |
 | [weewx-evo-wunderground](https://github.com/weewx-evo/weewx-evo-wunderground) | `wunderground` | Fine Offset Observer and its rebadges, Meteobridge, weather software generally |
 | [weewx-evo-weatherflow](https://github.com/weewx-evo/weewx-evo-weatherflow) | `weatherflow` | Tempest, and the AIR, SKY and hub before it |
+| [weewx-evo-purpleair](https://github.com/weewx-evo/weewx-evo-purpleair) | `purpleair` | PA-II, PA-II-SD and PA-I air quality sensors |
+
+PurpleAir is asked rather than listened for: the sensor has nowhere to type a
+server address into, so the driver goes to it on a schedule. That is a
+property of the protocol and not a second kind of plugin -- same `kind`, same
+entry point, same page.
 
 They share
 [weewx-evo-push-common](https://github.com/weewx-evo/weewx-evo-push-common),
