@@ -12,9 +12,17 @@
 #
 # ## Adding one
 #
+# **It has to live in the weewx-evo organisation.** Not because somebody else's
+# plugin is worse -- it is that this file is what the settings page installs
+# from, with one click and no further question, and the only honest answer to
+# "who stands behind that" is: whoever can write to the repository it comes
+# from. Transferring a repository here is how that is said, and it is also how
+# the question of signing is answered: the organisation decides who can push.
+#
 # Open a pull request that adds a block. What is checked before it is merged:
 #
-#   - it installs, and `weewx-evo <kind> list` shows it afterwards
+#   - the repository is under github.com/weewx-evo
+#   - it installs, and `weewx-evo addon list` shows it afterwards
 #   - it has a licence, and one compatible with GPL-3.0-or-later
 #   - `options()` returns something the settings page can render
 #   - the README says what it is for in the first paragraph
@@ -22,6 +30,14 @@
 # Nothing here is a judgement about quality. The catalogue says a plugin
 # exists and what it claims to do; whether it is any good is between its
 # author and the people using it.
+#
+# ## And this is not a list of what may be run
+#
+# Anything can be installed. Who publishes an add-on is nobody's to decide,
+# and `weewx-evo addon install --unlisted <anything pip takes>` is there for
+# exactly that. What this file decides is narrower and is about one click:
+# what the settings page offers, where nobody typed a URL and nobody chose a
+# publisher.
 #
 # ## The fields
 #
