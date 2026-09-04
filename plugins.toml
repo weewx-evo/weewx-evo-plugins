@@ -38,6 +38,32 @@
 # actually ran it against -- because a range is a promise nobody can keep and
 # a plugin that says "any version" is saying nothing.
 #
+# ## `detects`, and why it lives here
+#
+# With no driver installed, a console set up against a fresh weewx-evo uploads
+# with the right token and nothing can read it. The core keeps what arrived --
+# the path and the first 160 bytes -- and matches it against these, so the
+# page can say *something is uploading that looks like an Ecowitt custom
+# upload, this add-on reads it* instead of leaving somebody to compare a log
+# line against this file.
+#
+# The patterns are here rather than in the core on purpose: the core would
+# otherwise have to know the protocols it no longer ships, which is the whole
+# thing this arrangement removes. It matches strings this file gave it.
+#
+#   body      every one of these must appear. Case-sensitive.
+#   not_body  none of these may appear.
+#   path      any one of these, as a substring of the upload path.
+#
+# Read off each protocol's own `claims()` rather than invented, and the pair
+# that needs `not_body` shows why one list would not do: an Ecowitt custom
+# upload and an Ambient one both carry a PASSKEY, and what tells them apart
+# is that Ambient's `stationtype` begins with AMBWeather.
+#
+# More than one may match, and that is not a failure. The page offers what
+# matched and says so; guessing between them from 160 bytes would be a wrong
+# add-on installed with no sign of why.
+#
 # ## What is not listed
 #
 # A package that provides nothing on its own. `weewx-evo-push-common` carries
@@ -66,6 +92,7 @@ author = "hilman2"
 name = "weewx-evo-ecowitt"
 kind = "driver"
 provides = "ecowitt"
+detects = { body = ["PASSKEY="], not_body = ["AMBWeather"] }
 summary = "Ecowitt custom upload. GW1000 to GW3000, HP2551, HP2561, WS3800 and their rebadges."
 repository = "https://github.com/weewx-evo/weewx-evo-ecowitt"
 licence = "GPL-3.0-or-later"
@@ -76,6 +103,7 @@ author = "hilman2"
 name = "weewx-evo-ambient"
 kind = "driver"
 provides = "ambient"
+detects = { body = ["PASSKEY=", "AMBWeather"] }
 summary = "Ambient Weather custom upload. WS-2902, WS-5000, WS-1965 and the rest of the range."
 repository = "https://github.com/weewx-evo/weewx-evo-ambient"
 licence = "GPL-3.0-or-later"
@@ -86,6 +114,7 @@ author = "hilman2"
 name = "weewx-evo-acurite"
 kind = "driver"
 provides = "acurite"
+detects = { body = ["mt=", "id="] }
 summary = "Acurite smartHUB and Access bridges, with a 5-in-1, towers, Pro sensors and the 899 rain gauge."
 repository = "https://github.com/weewx-evo/weewx-evo-acurite"
 licence = "GPL-3.0-or-later"
@@ -96,6 +125,7 @@ author = "hilman2"
 name = "weewx-evo-lacrosse"
 kind = "driver"
 provides = "lacrosse"
+detects = { body = ["mac=", "id="] }
 summary = "LaCrosse LW301 and LW302 gateways, with the wind, rain, UV and temperature sensors."
 repository = "https://github.com/weewx-evo/weewx-evo-lacrosse"
 licence = "GPL-3.0-or-later"
@@ -106,6 +136,7 @@ author = "hilman2"
 name = "weewx-evo-wunderground"
 kind = "driver"
 provides = "wunderground"
+detects = { body = ["action=updateraw"], path = ["/weatherstation/updateweatherstation.php"] }
 summary = "The Weather Underground PWS upload. Fine Offset Observer consoles, any Ecowitt set to Wunderground, Meteobridge."
 repository = "https://github.com/weewx-evo/weewx-evo-wunderground"
 licence = "GPL-3.0-or-later"
@@ -116,6 +147,7 @@ author = "hilman2"
 name = "weewx-evo-weatherflow"
 kind = "driver"
 provides = "weatherflow"
+detects = { body = ["serial_number", "hub_sn"] }
 summary = "WeatherFlow Tempest, and the AIR and SKY before it, read off the hub's own UDP broadcast."
 repository = "https://github.com/weewx-evo/weewx-evo-weatherflow"
 licence = "GPL-3.0-or-later"
@@ -126,6 +158,7 @@ author = "hilman2"
 name = "weewx-evo-rtl433"
 kind = "driver"
 provides = "rtl433"
+detects = { body = ["\"model\"", "\"time\""] }
 summary = "Cheap 433, 868 and 915 MHz sensors heard with an RTL-SDR stick, by way of rtl_433."
 repository = "https://github.com/weewx-evo/weewx-evo-rtl433"
 licence = "GPL-3.0-or-later"
