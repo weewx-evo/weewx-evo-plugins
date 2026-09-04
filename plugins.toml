@@ -27,6 +27,7 @@
 #
 #   name        what `pip install` and `weewx-evo plugin install` take
 #   kind        driver | collector | export | upload | feed | forecast
+#               | library -- installed when something needs it, never offered
 #   provides    the name it registers, which is what goes in `kind = "..."`
 #   summary     one line, said the way the settings page will show it
 #   repository  where it lives
@@ -64,19 +65,37 @@
 # matched and says so; guessing between them from 160 bytes would be a wrong
 # add-on installed with no sign of why.
 #
-# ## What is not listed
+# ## A library is listed, and not offered
 #
-# A package that provides nothing on its own. `weewx-evo-push-common` carries
-# the parts every push protocol shares, and installing it alone registers no
-# protocol and answers on no endpoint -- so it is a dependency of the drivers
-# that need it and pip brings it along. A catalogue of things somebody can
-# choose should not offer one that does nothing when chosen.
+# `kind = "library"` is a package that provides nothing on its own.
+# `weewx-evo-push-common` carries the parts every push protocol shares;
+# installing it alone registers no protocol and answers on no endpoint.
 #
-# That is also why plugins depending on each other needs nothing here: it is
-# a line in the dependent plugin's `pyproject.toml`, which pip already
-# resolves. An index that had to know about it would be a package manager.
+# It is here because weewx-evo installs an add-on with `--no-deps` -- an
+# installer that fetched whatever a package asked for would be a way around
+# the rule that what may be installed is what this file lists. So a
+# dependency has to be in the index, and `library` is how it is in the index
+# without being on the shelf: it is pulled in when something that needs it is
+# installed, and it is not offered as a thing to choose.
+#
+# This is also the whole of what one plugin depending on another needs. The
+# dependency itself is a line in the dependent plugin's `pyproject.toml`,
+# where pip reads it; this file only has to say that the name is one that may
+# be installed here.
 
 version = 1
+
+# Listed so that it may be installed,  so that it is never offered.
+# Every push protocol depends on it and none of them works without it.
+[[plugin]]
+name = "weewx-evo-push-common"
+kind = "library"
+provides = ""
+summary = "The parts every push protocol shares. Installed with any of them; on its own it does nothing."
+repository = "https://github.com/weewx-evo/weewx-evo-push-common"
+licence = "GPL-3.0-or-later"
+tested = "0.0.1"
+author = "hilman2"
 
 [[plugin]]
 name = "weewx-evo-sftp"
